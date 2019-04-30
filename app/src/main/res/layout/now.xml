@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -19,45 +17,79 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit "
-            android:drawableLeft="@drawable/Edit"
+            android:drawableLeft="@drawable/ic_edit"
             android:layout_gravity="center"
-            android:id="@+id/editCurrentTaskBtn"/>
+            android:id="@+id/editCurrentTaskBtn"
+            android:padding="10dp"/>
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TableRow>
-                <TextView android:text="Work" />
-                <TextView android:id="@+id/nowWork"/>
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:stretchColumns="*"
+            >
+            <TableRow
+                android:background="@color/design_default_color_primary">
+                <TextView
+                    android:padding="5dp"
+                    android:text="Work"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/nowWork"
+                    android:textSize="20dp"
+                    android:text="Work Rs"/>
             </TableRow>
             <TableRow>
-                <TextView android:text="Amount" />
-                <TextView android:id="@+id/nowAmount"/>
+                <TextView
+                    android:padding="5dp"
+                    android:text="Amount"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/nowAmount"
+                    android:textSize="20dp"
+                    android:text="Work"/>
+            </TableRow>
+            <TableRow
+                android:background="@color/design_default_color_primary"
+                >
+                <TextView
+                    android:text="Finish Time"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    android:layout_marginRight="20dp"/>
+                <TextView
+                    android:id="@+id/nowFinishTime"
+                    android:textSize="20dp"
+                    android:text="Work"/>
             </TableRow>
             <TableRow>
-                <TextView android:text="Finish Time" />
-                <TextView android:id="@+id/nowFinishTime"/>
-            </TableRow>
-            <TableRow>
-                <TextView android:text="Time Left" />
-                <TextView android:id="@+id/nowTimeLeft"/>
+                <TextView
+                    android:padding="5dp"
+                    android:text="Time Left"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/nowTimeLeft"
+                    android:textSize="20dp"
+                    android:text="Work"/>
             </TableRow>
         </TableLayout>
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/nowProgressBar"/>
+        <!--<ProgressBar-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/nowProgressBar"/>-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/nowCompleteBtn"
             android:text="Task Completed"
-            android:drawableLeft="@drawable/Complete"/>
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/ic_completed"/>
 
         <Button
+            android:id="@+id/nextTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/nextTask"/>
+            android:text="Next Task" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,4 +97,4 @@
             android:id="@+id/nextTaskTime"/>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

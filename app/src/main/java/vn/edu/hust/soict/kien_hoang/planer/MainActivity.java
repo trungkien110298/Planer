@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TabHost;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +41,46 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Tạo các tab cho tab host
+
+
+    }
+
+    // This function config the tab host: 4 tabs now, day, week, calendar
+    public void tabConfiguration()
+    {
+        final TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+        tabHost.setup();    //setup tabHost
+        TabHost.TabSpec tabSpec ;
+        // Create tab now
+        tabSpec = tabHost.newTabSpec("now");
+        tabSpec.setContent(R.id.now);
+        tabSpec.setIndicator("Now");
+        tabHost.addTab(tabSpec);
+
+        //Create tab day
+        tabSpec = tabHost.newTabSpec("day");
+        tabSpec.setContent(R.id.day);
+        tabSpec.setIndicator("Day");
+        tabHost.addTab(tabSpec);
+
+        //Create tab week
+//        tabSpec = tabHost.newTabSpec("week");
+//        tabSpec.setContent(R.id.week);
+//        tabSpec.setIndicator("Week");
+//        tabHost.addTab(tabSpec);
+
+        //Create tab calendar
+//        tabSpec = tabHost.newTabSpec("calendar");
+//        tabSpec.setContent(R.id.calendar);
+//        tabSpec.setIndicator("Calendar");
+//        tabHost.addTab(tabSpec);
+
+        // Config default tab is the first one
+        tabHost.setCurrentTab(0);
+
+        // Process changed tab conditions
     }
 
     @Override
