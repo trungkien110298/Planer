@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit "
-            android:drawableLeft="@drawable/Edit"
+            android:drawableLeft="@drawable/edit"
             android:layout_gravity="center"
             android:id="@+id/editCurrentTaskBtn"/>
         <TableLayout
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nowCompleteBtn"
             android:text="Task Completed"
-            android:drawableLeft="@drawable/Complete"/>
+            android:drawableLeft="@drawable/complete"/>
 
         <Button
             android:layout_width="wrap_content"
