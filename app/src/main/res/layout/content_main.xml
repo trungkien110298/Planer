@@ -33,24 +33,24 @@
                     <include layout="@layout/now"/>
                 </LinearLayout>
                 <LinearLayout
-                android:id="@+id/day"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                    android:id="@+id/day"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
-                <include layout="@layout/day"/>
-            </LinearLayout>
-                <!--<ConstraintLayout-->
-                <!--android:id="@+id/week"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-                <!--<include layout="@layout/week"/>-->
-                <!--</ConstraintLayout>-->
-                <!--<ConstraintLayout-->
-                <!--android:id="@+id/calendar"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-                <!--<include layout="@layout/calendar"/>-->
-                <!--</ConstraintLayout>-->
+                    <include layout="@layout/day"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/week"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <include layout="@layout/week"/>
+                </LinearLayout>
+                <LinearLayout
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <include layout="@layout/calendar"/>
+                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

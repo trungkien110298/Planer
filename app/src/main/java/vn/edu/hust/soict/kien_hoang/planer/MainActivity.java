@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Tạo các tab cho tab host
-
+        tabConfiguration() ;
 
     }
 
@@ -66,16 +67,16 @@ public class MainActivity extends AppCompatActivity
         tabHost.addTab(tabSpec);
 
         //Create tab week
-//        tabSpec = tabHost.newTabSpec("week");
-//        tabSpec.setContent(R.id.week);
-//        tabSpec.setIndicator("Week");
-//        tabHost.addTab(tabSpec);
+        tabSpec = tabHost.newTabSpec("week");
+        tabSpec.setContent(R.id.week);
+        tabSpec.setIndicator("Week");
+        tabHost.addTab(tabSpec);
 
         //Create tab calendar
-//        tabSpec = tabHost.newTabSpec("calendar");
-//        tabSpec.setContent(R.id.calendar);
-//        tabSpec.setIndicator("Calendar");
-//        tabHost.addTab(tabSpec);
+        tabSpec = tabHost.newTabSpec("calendar");
+        tabSpec.setContent(R.id.calendar);
+        tabSpec.setIndicator("Calendar");
+        tabHost.addTab(tabSpec);
 
         // Config default tab is the first one
         tabHost.setCurrentTab(0);
