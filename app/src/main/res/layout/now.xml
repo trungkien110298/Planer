@@ -6,80 +6,85 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
         <Button
+            android:id="@+id/editCurrentTaskBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit "
-            android:drawableLeft="@drawable/ic_edit"
             android:layout_gravity="center"
-            android:id="@+id/editCurrentTaskBtn"
-            android:padding="10dp"/>
+            android:drawableLeft="@drawable/ic_edit"
+            android:padding="10dp"
+            android:text="Edit " />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:stretchColumns="*"
-            >
-            <TableRow
-                android:background="@color/design_default_color_primary">
+            android:stretchColumns="*">
+
+            <TableRow android:background="@color/design_default_color_primary">
+
                 <TextView
                     android:padding="5dp"
                     android:text="Work"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
+
                 <TextView
                     android:id="@+id/nowWork"
-                    android:textSize="20dp"
-                    android:text="Work Rs"/>
+                    android:text="Work Rs"
+                    android:textSize="20dp" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:padding="5dp"
                     android:text="Amount"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
+
                 <TextView
                     android:id="@+id/nowAmount"
-                    android:textSize="20dp"
-                    android:text="Work"/>
+                    android:text="Work"
+                    android:textSize="20dp" />
             </TableRow>
-            <TableRow
-                android:background="@color/design_default_color_primary"
-                >
+
+            <TableRow android:background="@color/design_default_color_primary">
+
                 <TextView
-                    android:text="Finish Time"
-                    android:textSize="20dp"
+                    android:layout_marginRight="20dp"
                     android:padding="5dp"
-                    android:layout_marginRight="20dp"/>
+                    android:text="Finish Time"
+                    android:textSize="20dp" />
+
                 <TextView
                     android:id="@+id/nowFinishTime"
-                    android:textSize="20dp"
-                    android:text="Work"/>
+                    android:text="Work"
+                    android:textSize="20dp" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:padding="5dp"
                     android:text="Time Left"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
+
                 <TextView
                     android:id="@+id/nowTimeLeft"
-                    android:textSize="20dp"
-                    android:text="Work"/>
+                    android:text="Work"
+                    android:textSize="20dp" />
             </TableRow>
         </TableLayout>
         <!--<ProgressBar-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/nowProgressBar"/>-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/nowProgressBar"/>-->
         <Button
+            android:id="@+id/nowCompleteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/nowCompleteBtn"
-            android:text="Task Completed"
             android:layout_gravity="center"
-            android:drawableLeft="@drawable/ic_completed"/>
+            android:drawableLeft="@drawable/ic_completed"
+            android:text="Task Completed" />
 
         <Button
             android:id="@+id/nextTask"
@@ -87,11 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Next Task" />
+
         <TextView
+            android:id="@+id/nextTaskTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/nextTaskTime"/>
+            android:gravity="center" />
     </LinearLayout>
-
-</LinearLayout>
