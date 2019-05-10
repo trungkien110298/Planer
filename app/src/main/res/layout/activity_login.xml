@@ -72,7 +72,16 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
-
+            <TextView
+                android:id="@+id/email_sign_up_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="right"
+                android:text="@string/action_sign_up"
+                android:textStyle="normal"
+                android:clickable="true"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

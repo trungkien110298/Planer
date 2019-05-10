@@ -39,18 +39,18 @@
                     android:orientation="vertical">
                 <include layout="@layout/day"/>
             </LinearLayout>
-                <!--<ConstraintLayout-->
+                <!--<LinearLayout-->
                 <!--android:id="@+id/week"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="match_parent">-->
                 <!--<include layout="@layout/week"/>-->
-                <!--</ConstraintLayout>-->
-                <!--<ConstraintLayout-->
+                <!--</LinearLayout>-->
+                <!--<LinearLayout-->
                 <!--android:id="@+id/calendar"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="match_parent">-->
                 <!--<include layout="@layout/calendar"/>-->
-                <!--</ConstraintLayout>-->
+                <!--</LinearLayout>-->
             </FrameLayout>
         </LinearLayout>
     </TabHost>

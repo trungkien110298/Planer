@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Tạo các tab cho tab host
-
+        tabConfiguration();
 
     }
 
