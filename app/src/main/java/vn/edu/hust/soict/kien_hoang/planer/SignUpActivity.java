@@ -304,23 +304,7 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
                 return false;
             }
 
-            Cursor user = userHelper.getByUsername(mEmail);
-            if (user != null) {
-                return userHelper.getPassword(user).equals(mPassword);
-            } else {
-                // TODO: register the new account here.
-
-            }
-
-//            for (String credential : DUMMY_CREDENTIALS) {
-//                String[] pieces = credential.split(":");
-//                if (pieces[0].equals(mEmail)) {
-//                    // Account exists, return true if the password matches.
-//                    return pieces[1].equals(mPassword);
-//                }
-//            }
-
-
+            userHelper.insert(mEmail, mPassword);
 
             return true;
         }
