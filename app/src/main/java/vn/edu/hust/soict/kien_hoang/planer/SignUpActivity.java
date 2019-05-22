@@ -39,6 +39,8 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
     private static final int REQUEST_READ_CONTACTS = 0;
 
     private SignUpActivity.UserSignUpTask mAuthTask = null;
+    private Cursor user = null;
+
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -303,10 +305,14 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
             } catch (InterruptedException e) {
                 return false;
             }
+            user = userHelper.getByUsername(mEmail);
+            startManagingCursor(user);
+            if (user == null) {
+                userHelper.insert(mEmail, mPassword);
+                return true;
+            }
 
-            userHelper.insert(mEmail, mPassword);
-
-            return true;
+            return false;
         }
 
         @Override
@@ -319,8 +325,8 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
                 startActivity(intent);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mEmailView.setError(getString(R.string.error_email_exists));
+                mEmailView.requestFocus();
             }
         }
 

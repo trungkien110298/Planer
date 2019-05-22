@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             "trungkien@gmail.com:11021998", "bar@example.com:world"
     };
 
-    Cursor user = null;
+    private Cursor user = null;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -93,7 +93,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                //attemptLogin();
             }
         });
 
@@ -192,12 +194,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-        user = userHelper.getByUsername(email);
-        if (user == null){
-            mEmailView.setError("This email address is invalid");
-            focusView = mEmailView;
-            cancel = true;
-        }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -316,7 +312,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
 
         private final String mEmail;
         private final String mPassword;
@@ -327,27 +323,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Integer doInBackground(Void... params) {
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
+            user = userHelper.getByUsername(mEmail);
+            startManagingCursor(user);
+            if (user == null) {
+                return 1;
             }
 
-            return userHelper.getPassword(user).equals(mPassword);
+            if (userHelper.getPassword(user).equals(mPassword))
+                return 0;
+            else return 2;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final Integer success) {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
+            if (success == 0) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            } else if (success == 1) {
+                mEmailView.setError(getString(R.string.error_invalid_email));
+                mEmailView.requestFocus();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
