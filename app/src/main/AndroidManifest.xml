@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".SignUpActivity"
-                  android:label="@string/title_activity_signup">
+                  android:label="@string/title_activity_sign_up">
         </activity>
 
         <activity
