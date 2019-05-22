@@ -15,7 +15,7 @@
             android:layout_marginBottom="0dp" />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="DAY DAY DAY DAY DAY "/>
+    android:layout_height="match_parent"
+    android:text="DAY DAY DAY DAY DAY "/>
 
-</LinearLayout>
+    </LinearLayout>
