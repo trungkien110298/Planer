@@ -1,5 +1,6 @@
 package vn.edu.hust.soict.kien_hoang.planer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.Toast;
+
+import java.time.Instant;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -57,26 +60,33 @@ public class MainActivity extends AppCompatActivity
         // Create tab now
         tabSpec = tabHost.newTabSpec("now");
         tabSpec.setContent(R.id.now);
-        tabSpec.setIndicator("Now");
+        tabSpec.setIndicator("NowActivity");
         tabHost.addTab(tabSpec);
+        Intent nowIntent = new Intent(this, NowActivity.class);
 
         //Create tab day
         tabSpec = tabHost.newTabSpec("day");
         tabSpec.setContent(R.id.day);
         tabSpec.setIndicator("Day");
         tabHost.addTab(tabSpec);
+        Intent dayIntent = new Intent(this, DayActivity.class);
+
 
         //Create tab week
         tabSpec = tabHost.newTabSpec("week");
         tabSpec.setContent(R.id.week);
         tabSpec.setIndicator("Week");
         tabHost.addTab(tabSpec);
+        Intent weekInstent = new Intent(this, WeekActivity.class);
+
 
         //Create tab calendar
         tabSpec = tabHost.newTabSpec("calendar");
         tabSpec.setContent(R.id.calendar);
-        tabSpec.setIndicator("Calendar");
+        tabSpec.setIndicator("CalendarActivity");
         tabHost.addTab(tabSpec);
+        Intent celendarInstent = new Intent(this, CalendarActivity.class);
+
 
         // Config default tab is the first one
         tabHost.setCurrentTab(0);
