@@ -6,16 +6,237 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/day"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp" />
-        <TextView
-            android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="DAY DAY DAY DAY DAY "/>
+    <TableLayout
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:stretchColumns="*"
+        >
 
-    </LinearLayout>
+        <TableRow
+            android:gravity="center_vertical"
+            android:background="@color/design_default_color_primary"
+            android:textAlignment="center">
+
+            <TextView
+
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Task" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Start" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Finish" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Completed" />
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textAlignment="center">
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report But the task is so longg"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="12h30" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="13h30"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Done" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
