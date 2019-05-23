@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +30,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,13 +47,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "trungkien@gmail.com:11021998", "bar@example.com:world"
-    };
 
     private Cursor user = null;
     /**
@@ -65,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private UserHelper userHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                //attemptLogin();
+                attemptLogin();
             }
         });
 
@@ -110,6 +104,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        userHelper.close();
     }
 
     private void populateAutoComplete() {
@@ -324,16 +324,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Integer doInBackground(Void... params) {
-
             user = userHelper.getByUsername(mEmail);
             startManagingCursor(user);
-            if (user == null) {
-                return 1;
-            }
 
+
+            if (user.getCount() == 0)
+                return 1;
+
+            user.moveToFirst();
             if (userHelper.getPassword(user).equals(mPassword))
                 return 0;
-            else return 2;
+
+            return 2;
         }
 
         @Override

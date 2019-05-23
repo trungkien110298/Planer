@@ -13,7 +13,7 @@
 
     <!-- SignUp progress -->
     <ProgressBar
-        android:id="@+id/login_progress"
+        android:id="@+id/sign_up_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -19,6 +19,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -33,7 +34,7 @@ import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
-public class SignUpActivity extends AppCompatActivity  implements LoaderCallbacks<Cursor> {
+public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
 
     private static final int REQUEST_READ_CONTACTS = 0;
@@ -81,9 +82,8 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
         });
 
 
-
-        mSignUpFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        mSignUpFormView = findViewById(R.id.sign_up_form);
+        mProgressView = findViewById(R.id.sign_up_progress);
     }
 
     private void populateAutoComplete() {
@@ -176,6 +176,7 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
             // Check email and password
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+
             showProgress(true);
             mAuthTask = new SignUpActivity.UserSignUpTask(email, password);
             mAuthTask.execute((Void) null);
@@ -297,22 +298,12 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
             user = userHelper.getByUsername(mEmail);
             startManagingCursor(user);
-            if (user == null) {
-                userHelper.insert(mEmail, mPassword);
-                return true;
-            }
 
-            return false;
+            if (user.getCount() == 0) {
+                return true;
+            } else return false;
         }
 
         @Override
@@ -321,6 +312,7 @@ public class SignUpActivity extends AppCompatActivity  implements LoaderCallback
             showProgress(false);
 
             if (success) {
+                userHelper.insert(mEmail, mPassword);
                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
