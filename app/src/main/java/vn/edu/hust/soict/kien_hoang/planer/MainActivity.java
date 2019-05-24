@@ -1,11 +1,11 @@
 package vn.edu.hust.soict.kien_hoang.planer;
 
+import android.app.LocalActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,10 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TabHost;
-import android.widget.Toast;
-
-import java.time.Instant;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,45 +45,51 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Tạo các tab cho tab host
-        tabConfiguration() ;
+        tabConfiguration(savedInstanceState) ;
 
     }
 
     // This function config the tab host: 4 tabs now, day, week, calendar
-    public void tabConfiguration()
+    public void tabConfiguration(Bundle savedInstanceState)
     {
         final TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
-        tabHost.setup();    //setup tabHost
+        LocalActivityManager mLocalActivityManager = new LocalActivityManager(this, false);
+        mLocalActivityManager.dispatchCreate(savedInstanceState);
+        tabHost.setup(mLocalActivityManager);
         TabHost.TabSpec tabSpec ;
         // Create tab now
-        tabSpec = tabHost.newTabSpec("now");
-        tabSpec.setContent(R.id.now);
-        tabSpec.setIndicator("NowActivity");
-        tabHost.addTab(tabSpec);
         Intent nowIntent = new Intent(this, NowActivity.class);
+        tabSpec = tabHost.newTabSpec("now");
+        tabSpec.setIndicator("Now");
+        tabSpec.setContent(nowIntent);
+        tabHost.addTab(tabSpec);
+
 
         //Create tab day
-        tabSpec = tabHost.newTabSpec("day");
-        tabSpec.setContent(R.id.day);
-        tabSpec.setIndicator("Day");
-        tabHost.addTab(tabSpec);
         Intent dayIntent = new Intent(this, DayActivity.class);
+        tabSpec = tabHost.newTabSpec("day");
+        tabSpec.setIndicator("Day");
+        tabSpec.setContent(dayIntent);
+        tabHost.addTab(tabSpec);
+
 
 
         //Create tab week
-        tabSpec = tabHost.newTabSpec("week");
-        tabSpec.setContent(R.id.week);
-        tabSpec.setIndicator("Week");
-        tabHost.addTab(tabSpec);
         Intent weekInstent = new Intent(this, WeekActivity.class);
+        tabSpec = tabHost.newTabSpec("week");
+        tabSpec.setIndicator("Week");
+        tabSpec.setContent(weekInstent);
+        tabHost.addTab(tabSpec);
+
 
 
         //Create tab calendar
+        Intent calendarInstent = new Intent(this, CalendarActivity.class);
         tabSpec = tabHost.newTabSpec("calendar");
-        tabSpec.setContent(R.id.calendar);
-        tabSpec.setIndicator("CalendarActivity");
+        tabSpec.setIndicator("Calendar");
+        tabSpec.setContent(calendarInstent);
         tabHost.addTab(tabSpec);
-        Intent celendarInstent = new Intent(this, CalendarActivity.class);
+
 
 
         // Config default tab is the first one
