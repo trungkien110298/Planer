@@ -1,13 +1,11 @@
 package vn.edu.hust.soict.kien_hoang.planer;
 
+import android.app.LocalActivityManager;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,11 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CalendarView;
+import android.view.View;
 import android.widget.TabHost;
-import android.widget.Toast;
-
-import java.time.Instant;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,68 +44,55 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-//        CalendarView simpleCalendarView;
-//        simpleCalendarView = (CalendarView) findViewById(R.id.simpleCalendarView); // get the reference of CalendarView
-//        simpleCalendarView.setFocusedMonthDateColor(Color.RED); // set the red color for the dates of  focused month
-//        simpleCalendarView.setUnfocusedMonthDateColor(Color.BLUE); // set the yellow color for the dates of an unfocused month
-//        simpleCalendarView.setSelectedWeekBackgroundColor(Color.RED); // Thiết lập màu đỏ cho các tuần, Từ API 23 trở lên mới hỗ trợ
-//        simpleCalendarView.setWeekSeparatorLineColor(Color.GREEN); // Thiết lập cho đường khoảng cách giữa các tuần là màu xanh
-//        // perform setOnDateChangeListener event on CalendarView
-//        simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-//            @Override
-//            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-//                // display the selected date by using a toast
-//                Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
-//            }
-//        });
-
         // Tạo các tab cho tab host
-        tabConfiguration() ;
+        tabConfiguration(savedInstanceState) ;
 
     }
 
     // This function config the tab host: 4 tabs now, day, week, calendar
-    public void tabConfiguration()
+    public void tabConfiguration(Bundle savedInstanceState)
     {
         final TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
-        tabHost.setup();    //setup tabHost
+        LocalActivityManager mLocalActivityManager = new LocalActivityManager(this, false);
+        mLocalActivityManager.dispatchCreate(savedInstanceState);
+        tabHost.setup(mLocalActivityManager);
         TabHost.TabSpec tabSpec ;
         // Create tab now
-        tabSpec = tabHost.newTabSpec("now");
-        tabSpec.setContent(R.id.now);
-        tabSpec.setIndicator("Now");
-        tabHost.addTab(tabSpec);
         Intent nowIntent = new Intent(this, NowActivity.class);
-//        startActivity(nowIntent);
+        tabSpec = tabHost.newTabSpec("now");
+        tabSpec.setIndicator("Now");
+        tabSpec.setContent(nowIntent);
+        tabHost.addTab(tabSpec);
+
 
         //Create tab day
-        tabSpec = tabHost.newTabSpec("day");
-        tabSpec.setContent(R.id.day);
-        tabSpec.setIndicator("Day");
-        tabHost.addTab(tabSpec);
         Intent dayIntent = new Intent(this, DayActivity.class);
+        tabSpec = tabHost.newTabSpec("day");
+        tabSpec.setIndicator("Day");
+        tabSpec.setContent(dayIntent);
+        tabHost.addTab(tabSpec);
+
 
 
         //Create tab week
+        Intent weekInstent = new Intent(this, WeekActivity.class);
         tabSpec = tabHost.newTabSpec("week");
-        tabSpec.setContent(R.id.week);
         tabSpec.setIndicator("Week");
+        tabSpec.setContent(weekInstent);
         tabHost.addTab(tabSpec);
-        Intent weekIntent = new Intent(this, WeekActivity.class);
+
 
 
         //Create tab calendar
+        Intent calendarInstent = new Intent(this, CalendarActivity.class);
         tabSpec = tabHost.newTabSpec("calendar");
-        tabSpec.setContent(R.id.calendar);
         tabSpec.setIndicator("Calendar");
+        tabSpec.setContent(calendarInstent);
         tabHost.addTab(tabSpec);
-        Intent celendarIntent = new Intent(this, CalendarActivity.class);
-//        startActivity(celendarIntent);
 
         // Config default tab is the first one
-        tabHost.setCurrentTab(0);
-        Log.d("Log Main", "Log Main tesst ");
+        tabHost.setCurrentTab(1);
+
         // Process changed tab conditions
     }
 
