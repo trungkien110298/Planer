@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="New Task For Day"
+            android:text="Create new task"
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -39,7 +39,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/bt_create"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -52,11 +52,10 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:text="Task name" />
+                android:text="Task Name" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/et_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -72,14 +71,13 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amount" />
+                android:text="Start Time" />
 
             <EditText
-                android:id="@+id/editText2"
-                android:layout_width="wrap_content"
+                android:id="@+id/etStartTime"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal" />
+                android:hint="Choose the time" />
         </TableRow>
 
         <TableRow
@@ -90,14 +88,13 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FinishTime" />
+                android:text="Finish Time" />
 
             <EditText
-                android:id="@+id/editText3"
-                android:layout_width="wrap_content"
+                android:id="@+id/etFinishTime"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
+                android:hint="Choose the time" />
         </TableRow>
 
         <TableRow
@@ -111,17 +108,16 @@
                 android:text="Date" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/etDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date" />
+                android:hint="Choose the date"/>
         </TableRow>
 
     </TableLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bt_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

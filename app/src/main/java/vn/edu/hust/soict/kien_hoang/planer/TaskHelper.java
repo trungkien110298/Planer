@@ -5,10 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class TaskHelper extends SQLiteOpenHelper {
@@ -37,13 +38,13 @@ public class TaskHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insert(String name, LocalDateTime startTime, LocalDateTime finishTime, boolean isDone) {
+    public void insert(String name, Time startTime, Time finishTime, Date date, boolean isDone) {
         ContentValues cv = new ContentValues();
         cv.put("name", name);
         cv.put("startTime", startTime.toString());
         cv.put("finishTime", finishTime.toString());
         cv.put("isDone", Boolean.toString(isDone));
-        getWritableDatabase().insert("users", "username", cv);
+        getWritableDatabase().insert("tasks", "name", cv);
     }
 
     public String getName(Cursor c) {
