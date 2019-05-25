@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
         android:id="@+id/date_view"
@@ -15,14 +16,14 @@
         android:text="Set the Date"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold" />
-
     <!-- Add CalenderView to display the Calender -->
     <CalendarView
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/calender"
-        android:layout_margin="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </CalendarView>
+        android:id="@+id/simpleCalendarView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:firstDayOfWeek="2"
+        android:maxDate="01/01/2050"
+        android:minDate="01/01/2019" />
+
 
 </LinearLayout>
