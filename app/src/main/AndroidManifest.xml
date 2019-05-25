@@ -51,6 +51,14 @@
         <!--New Activity-->
         <activity android:name=".NewTaskActivity">
         </activity>
+
+        <activity android:name=".CalendarActivity"></activity>
+
+        <activity android:name=".NowActivity"></activity>
+
+        <activity android:name=".DayActivity"></activity>
+
+        <activity android:name=".WeekActivity"></activity>
     </application>
 
 </manifest>

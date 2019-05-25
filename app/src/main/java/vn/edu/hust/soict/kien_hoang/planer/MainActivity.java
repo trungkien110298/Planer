@@ -90,10 +90,8 @@ public class MainActivity extends AppCompatActivity
         tabSpec.setContent(calendarInstent);
         tabHost.addTab(tabSpec);
 
-
-
         // Config default tab is the first one
-        tabHost.setCurrentTab(0);
+        tabHost.setCurrentTab(1);
 
         // Process changed tab conditions
     }
