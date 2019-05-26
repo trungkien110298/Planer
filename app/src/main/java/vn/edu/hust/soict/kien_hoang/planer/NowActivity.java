@@ -34,7 +34,7 @@ public class NowActivity extends Activity {
         timeLeft = findViewById(R.id.nowTaskTimeLeft);
 
 
-        // Add new task
+        // Add new task button
         Button addTaskButton = findViewById(R.id.editCurrentTaskBtn);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +86,10 @@ public class NowActivity extends Activity {
                         }
                     }
 
+                    //Add new task if have
                     if (task != null)
                     {
-                        timeLeft.setText(new Time(lTimeLeft).toString());
+                        timeLeft.setText(new Time(lTimeLeft).toString().substring(0,5));
                     } else {
                         Cursor c = taskHelper.getAll();
                         c.moveToFirst();
@@ -104,6 +105,7 @@ public class NowActivity extends Activity {
                                 lTimeLast = lCurrentTime - lStartTime;
                                 if(lTimeLast >0 && lTimeLeft >0){
                                     //Create task
+                                    Log.d("Time ", "" + new Time(lFinishTime-lStartTime).toString());
                                     task = new Task();
                                     task.setName(taskHelper.getName(c));
                                     task.setStartTime(taskHelper.getStartTime(c).toString());
@@ -112,13 +114,22 @@ public class NowActivity extends Activity {
 
                                     //Change view
                                     taskName.setText(taskHelper.getName(c));
-                                    startTime.setText(taskHelper.getStartTime(c).toString());
-                                    finishTime.setText(taskHelper.getFinishTime(c).toString());
-                                    timeLeft.setText(new Time(lTimeLeft).toString());
+                                    startTime.setText(taskHelper.getStartTime(c).toString().substring(0,5));
+                                    finishTime.setText(taskHelper.getFinishTime(c).toString().substring(0,5));
+                                    timeLeft.setText(new Time(lTimeLeft).toString().substring(0,5));
                                     break;
                                 }
                             }
                         } while (c.moveToNext());
+                    }
+
+                    //Change to default if done have
+                    if (task == null)
+                    {
+                        taskName.setText("None");
+                        startTime.setText("--:--");
+                        finishTime.setText("--:--");
+                        timeLeft.setText("--:--");
                     }
 
                 } catch (Exception e) {

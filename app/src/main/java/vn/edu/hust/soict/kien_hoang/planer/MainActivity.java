@@ -20,6 +20,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static TabHost tabHost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +48,13 @@ public class MainActivity extends AppCompatActivity
 
         // Tạo các tab cho tab host
         tabConfiguration(savedInstanceState) ;
-        IntentRedirect();
+        //IntentRedirect();
     }
 
     // This function config the tab host: 4 tabs now, day, week, calendar
     public void tabConfiguration(Bundle savedInstanceState)
     {
-        final TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+        tabHost = (TabHost)findViewById(android.R.id.tabhost);
         LocalActivityManager mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
         tabHost.setup(mLocalActivityManager);
@@ -76,19 +77,19 @@ public class MainActivity extends AppCompatActivity
 
 
         //Create tab week
-        Intent weekInstent = new Intent(this, WeekActivity.class);
+        Intent weekIntent = new Intent(this, WeekActivity.class);
         tabSpec = tabHost.newTabSpec("week");
         tabSpec.setIndicator("Week");
-        tabSpec.setContent(weekInstent);
+        tabSpec.setContent(weekIntent);
         tabHost.addTab(tabSpec);
 
 
 
         //Create tab calendar
-        Intent calendarInstent = new Intent(this, CalendarActivity.class);
+        Intent calendarIntent = new Intent(this, CalendarActivity.class);
         tabSpec = tabHost.newTabSpec("calendar");
         tabSpec.setIndicator("Calendar");
-        tabSpec.setContent(calendarInstent);
+        tabSpec.setContent(calendarIntent);
         tabHost.addTab(tabSpec);
 
         // Config default tab is the first one
@@ -97,6 +98,10 @@ public class MainActivity extends AppCompatActivity
         // Process changed tab conditions
     }
 
+    public static void setCurrentTabHost(int t)
+    {
+        tabHost.setCurrentTab(t);
+    }
     public void IntentRedirect()
     {
         Intent intent = getIntent();

@@ -18,12 +18,13 @@ public class CalendarActivity extends Activity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // display the selected date by using a toast
-                Intent intent = new Intent(CalendarActivity.this,MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("date",dayOfMonth + "/" + month + "/" + year);
-                bundle.putString("routes","Day");
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+//                Intent intent = new Intent(CalendarActivity.this,MainActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("date",dayOfMonth + "/" + month + "/" + year);
+//                bundle.putString("routes","Day");
+//                intent.putExtra("bundle",bundle);
+//                startActivity(intent);
+                MainActivity.setCurrentTabHost(1);
             }
         });
     }
