@@ -34,7 +34,7 @@ public class TaskHelper extends SQLiteOpenHelper {
 
     public Cursor getAll() {
         return (getReadableDatabase()
-                .rawQuery("SELECT _id, name, startTime, finishTime FROM users ORDER BY _id", null));
+                .rawQuery("SELECT _id, name, startTime, finishTime FROM tasks ORDER BY _id", null));
     }
 
 

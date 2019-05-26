@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class DayActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +15,15 @@ public class DayActivity extends Activity {
         if (intent != null) {
             Bundle bundle = intent.getBundleExtra("bundle");
             if (bundle != null) {
-                Toast.makeText(this,bundle.getString("date"),Toast.LENGTH_LONG).show();
+                String routes = bundle.getString("routes");
+                if(routes.equals("Day"))
+                {
+                    // Chuyen huong intent sang
+                    Intent redirectIntent = new Intent(this,DayActivity.class);
+                    Bundle redirectBundle = bundle;
+                    intent.putExtra("bundle",bundle);
+                    startActivity(redirectIntent);
+                }
             } else {
                 Toast.makeText(this,intent.getStringExtra("date"),Toast.LENGTH_LONG).show();
             }

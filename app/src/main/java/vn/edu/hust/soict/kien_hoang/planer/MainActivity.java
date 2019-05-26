@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity
 
         // Tạo các tab cho tab host
         tabConfiguration(savedInstanceState) ;
-
+        IntentRedirect();
     }
 
     // This function config the tab host: 4 tabs now, day, week, calendar
@@ -91,9 +92,33 @@ public class MainActivity extends AppCompatActivity
         tabHost.addTab(tabSpec);
 
         // Config default tab is the first one
-        tabHost.setCurrentTab(1);
+        tabHost.setCurrentTab(0);
 
         // Process changed tab conditions
+    }
+
+    public void IntentRedirect()
+    {
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle bundle = intent.getBundleExtra("bundle");
+            if (bundle != null) {
+                String routes = bundle.getString("routes");
+                if(routes.equals("Day"))
+                {
+                    // Chuyen huong intent sang
+//                    Intent redirectIntent = new Intent(this,DayActivity.class);
+//                    Bundle redirectBundle = bundle;
+//                    intent.putExtra("bundle",bundle);
+//                    startActivity(redirectIntent);
+                    TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+                    tabHost.setCurrentTab(1);
+                }
+            } else {
+                Toast.makeText(this,intent.getStringExtra("date"),Toast.LENGTH_LONG).show();
+            }
+        }
+        else Toast.makeText(this,"welcome to Main Activity", Toast.LENGTH_LONG).show();
     }
 
     @Override
