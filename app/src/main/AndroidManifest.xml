@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -52,13 +53,10 @@
         <activity android:name=".NewTaskActivity">
         </activity>
 
-        <activity android:name=".CalendarActivity"></activity>
-
-        <activity android:name=".NowActivity"></activity>
-
-        <activity android:name=".DayActivity"></activity>
-
-        <activity android:name=".WeekActivity"></activity>
+        <!--Update Task-->
+        <service
+            android:name=".NowActivity$UpdateJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

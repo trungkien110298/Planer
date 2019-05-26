@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
         tabHost.addTab(tabSpec);
 
         // Config default tab is the first one
-        tabHost.setCurrentTab(1);
+        tabHost.setCurrentTab(0);
 
         // Process changed tab conditions
     }

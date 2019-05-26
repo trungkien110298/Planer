@@ -19,8 +19,8 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/nowWork"
-                android:text="Work Rs"
+                android:id="@+id/nowTaskName"
+                android:text="BTL Android"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -28,12 +28,12 @@
 
             <TextView
                 android:padding="5dp"
-                android:text="Amount"
+                android:text="Start time"
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/nowAmount"
-                android:text="Work"
+                android:id="@+id/nowTaskStartTime"
+                android:text="22:00"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -46,8 +46,8 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/nowFinishTime"
-                android:text="Work"
+                android:id="@+id/nowTaskFinishTime"
+                android:text="23:00"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -59,8 +59,8 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/nowTimeLeft"
-                android:text="Work"
+                android:id="@+id/nowTaskTimeLeft"
+                android:text="2:00"
                 android:textSize="20dp" />
         </TableRow>
     </TableLayout>

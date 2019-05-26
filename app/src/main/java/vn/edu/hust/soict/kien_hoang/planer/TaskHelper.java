@@ -6,11 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TaskHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "planner.db";
@@ -23,7 +20,7 @@ public class TaskHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE tasks (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, " +
-                "startTime TEXT, finishTime TEXT, isDone TEXT);");
+                "startTime TEXT, finishTime TEXT, date TEXT, isDone TEXT);");
     }
 
     @Override
@@ -34,7 +31,7 @@ public class TaskHelper extends SQLiteOpenHelper {
 
     public Cursor getAll() {
         return (getReadableDatabase()
-                .rawQuery("SELECT _id, name, startTime, finishTime FROM users ORDER BY _id", null));
+                .rawQuery("SELECT _id, name, startTime, finishTime, date, isDone FROM tasks ORDER BY _id", null));
     }
 
 
@@ -43,6 +40,7 @@ public class TaskHelper extends SQLiteOpenHelper {
         cv.put("name", name);
         cv.put("startTime", startTime.toString());
         cv.put("finishTime", finishTime.toString());
+        cv.put("date", date.toString());
         cv.put("isDone", Boolean.toString(isDone));
         getWritableDatabase().insert("tasks", "name", cv);
     }
@@ -51,33 +49,24 @@ public class TaskHelper extends SQLiteOpenHelper {
         return (c.getString(1));
     }
 
-    public Date getStartTime(Cursor c) {
+    public Time getStartTime(Cursor c) {
         String s = c.getString(2);
-        DateFormat df = new SimpleDateFormat();
-
-        Date startTime = null;
-        try {
-            startTime = df.parse(s);
-        } catch (ParseException e) {
-            return null;
-        }
+        Time startTime = Time.valueOf(s);
         return startTime;
     }
 
-    public Date getFinishTime(Cursor c) {
-        String s = c.getString(2);
-        DateFormat df = new SimpleDateFormat();
-
-        Date finishTime = null;
-        try {
-            finishTime = df.parse(s);
-        } catch (ParseException e) {
-            return null;
-        }
+    public Time getFinishTime(Cursor c) {
+        String s = c.getString(3);
+        Time finishTime = Time.valueOf(s);
         return finishTime;
     }
 
+    public Date getDate(Cursor c) {
+        String s = c.getString(4);
+        Date date = Date.valueOf(s);
+        return date;
+    }
     public boolean getIsDone(Cursor c) {
-        return (Boolean.parseBoolean(c.getString(3)));
+        return (Boolean.parseBoolean(c.getString(5)));
     }
 }
