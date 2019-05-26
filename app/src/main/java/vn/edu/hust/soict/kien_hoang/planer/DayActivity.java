@@ -10,16 +10,17 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class DayActivity extends Activity {
+    private  TaskHelper taskHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day);
+         taskHelper = new TaskHelper(DayActivity.this);
         // Hàm dùng để chuyển dữ liệu từ cơ sở dữ liệu lên listview trên màn hình của người dùng
         populateListView();
     }
 
     private void populateListView() {
-        TaskHelper taskHelper = new TaskHelper(DayActivity.this);
         Cursor cursor = taskHelper.getAll(); // Lấy dữ liệu từ cơ sở dữ liệu
         String[] fromFieldNames = new String[] {"_id","name", "startTime", "finishTime" , "date", "isDone"}; // Thiết lập thông tin các trường cần đưa lên
         int[] taskList = new int[] {R.id.taskName, R.id.startTime, R.id.finishTime, R.id.done }; // Thiết lập các id tương ứng với các dữ liệu cần đưa lên

@@ -67,17 +67,22 @@ public class NowActivity extends Activity {
                     Calendar calendar = Calendar.getInstance();
                     String sCurrentTime = new Time(calendar.getTimeInMillis()).toString();
                     long lCurrentTime = Time.valueOf(sCurrentTime).getTime();
+
+                    Log.d("KKKKKK", sCurrentTime + lCurrentTime);
+
+
                     int currentYear = calendar.get(Calendar.YEAR);
                     int currentMonth = calendar.get(Calendar.MONTH);
                     int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-                    String sCurrentDate = new Date(currentYear-1900, currentMonth, currentDay).toString();
+                    String sCurrentDate = new Date(currentYear - 1900, currentMonth, currentDay).toString();
 
                     // Check task finished or not
                     if (task != null) {
                         lFinishTime = Time.valueOf(task.getFinishTime()).getTime();
                         lTimeLeft = lFinishTime - lCurrentTime;
-                        Log.d("TL" , lCurrentTime+ " " + lFinishTime);
-                        if(lTimeLeft < 0) {
+
+
+                        if (lTimeLeft < 0) {
                             task = null;
                             taskName.setText("None");
                             startTime.setText("");
@@ -87,25 +92,26 @@ public class NowActivity extends Activity {
                     }
 
                     //Add new task if have
-                    if (task != null)
-                    {
-                        timeLeft.setText(new Time(lTimeLeft).toString().substring(0,5));
+                    if (task != null) {
+                        timeLeft.setText(new Time(lTimeLeft - 8 * 60 * 60 * 1000).toString().substring(0, 5));
                     } else {
                         Cursor c = taskHelper.getAll();
                         c.moveToFirst();
                         do {
-                            Log.d("Cursor","" + taskHelper.getName(c));
+                            Log.d("Cursor", "" + taskHelper.getName(c));
                             String sTaskDate = taskHelper.getDate(c).toString();
-                            if (sCurrentDate.equals(sTaskDate))
-                            {
+                            if (sCurrentDate.equals(sTaskDate)) {
                                 Log.d("Equals", "YOLOOOOOOO");
                                 lFinishTime = taskHelper.getFinishTime(c).getTime();
                                 lStartTime = taskHelper.getStartTime(c).getTime();
+                                Log.d("FFFFFF", taskHelper.getFinishTime(c) + " " + lFinishTime);
+                                Log.d("SSSSSS", taskHelper.getStartTime(c) + " " + lStartTime);
                                 lTimeLeft = lFinishTime - lCurrentTime;
                                 lTimeLast = lCurrentTime - lStartTime;
-                                if(lTimeLast >0 && lTimeLeft >0){
+                                if (lTimeLast > 0 && lTimeLeft > 0) {
                                     //Create task
-                                    Log.d("Time ", "" + new Time(lFinishTime-lStartTime).toString());
+                                    Log.d("Time ", taskHelper.getFinishTime(c) + " " + taskHelper.getStartTime(c) + " "
+                                            + new Time(lFinishTime - lStartTime - 8 * 60 * 60 * 1000).toString());
                                     task = new Task();
                                     task.setName(taskHelper.getName(c));
                                     task.setStartTime(taskHelper.getStartTime(c).toString());
@@ -114,9 +120,9 @@ public class NowActivity extends Activity {
 
                                     //Change view
                                     taskName.setText(taskHelper.getName(c));
-                                    startTime.setText(taskHelper.getStartTime(c).toString().substring(0,5));
-                                    finishTime.setText(taskHelper.getFinishTime(c).toString().substring(0,5));
-                                    timeLeft.setText(new Time(lTimeLeft).toString().substring(0,5));
+                                    startTime.setText(taskHelper.getStartTime(c).toString().substring(0, 5));
+                                    finishTime.setText(taskHelper.getFinishTime(c).toString().substring(0, 5));
+                                    timeLeft.setText(new Time(lTimeLeft - 8 * 60 * 60 * 1000).toString().substring(0, 5));
                                     break;
                                 }
                             }
@@ -124,8 +130,7 @@ public class NowActivity extends Activity {
                     }
 
                     //Change to default if done have
-                    if (task == null)
-                    {
+                    if (task == null) {
                         taskName.setText("None");
                         startTime.setText("--:--");
                         finishTime.setText("--:--");
@@ -137,7 +142,6 @@ public class NowActivity extends Activity {
             }
         });
     }
-
 
 
     /**

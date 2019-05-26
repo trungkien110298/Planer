@@ -13,7 +13,7 @@ import java.sql.Time;
 
 public class TaskHelper extends SQLiteOpenHelper {
     public SQLiteDatabase db ;
-    private static final String DATABASE_NAME = "planner.db";
+    private static final String DATABASE_NAME = "task.db";
     private static final int SCHEMA_VERSION = 1;
 
     public TaskHelper(Context context) {

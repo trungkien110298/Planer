@@ -128,6 +128,7 @@ public class NewTaskActivity extends Activity {
                 name = etName.getText().toString();
                 taskHelper.insert(name, startTime, finishTime, date, false);
                 Toast.makeText(getApplicationContext(), "Added new task", Toast.LENGTH_SHORT).show();
+                
                 finish();
             }
         });
@@ -136,7 +137,6 @@ public class NewTaskActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         taskHelper.close();
     }
 }

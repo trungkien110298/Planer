@@ -6,10 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class UserHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "planner.db";
+    private static final String DATABASE_NAME = "user.db";
     private static final int SCHEMA_VERSION = 1;
 
     public UserHelper(Context context) {
@@ -38,6 +39,7 @@ public class UserHelper extends SQLiteOpenHelper {
             c = getReadableDatabase()
                     .rawQuery("SELECT _id, username, password FROM users WHERE username = ?", new String[]{username});
         } catch (SQLiteException e) {
+            Log.d("Exception", "KKK");
             return null;
         }
         return c;
