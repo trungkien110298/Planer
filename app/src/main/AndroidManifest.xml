@@ -53,10 +53,7 @@
         <activity android:name=".NewTaskActivity">
         </activity>
 
-        <!--Update Task-->
-        <service
-            android:name=".NowActivity$UpdateJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>
