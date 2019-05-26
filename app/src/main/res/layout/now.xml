@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+    // Khai báo bảng chứa dữ liệu của công việc hiện tại
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:stretchColumns="*">
-
+        // Tên công việc
         <TableRow android:background="@color/colorPrimary">
 
             <TextView
@@ -23,7 +23,7 @@
                 android:text="None"
                 android:textSize="20dp" />
         </TableRow>
-
+        //Thời gian bắt đầu
         <TableRow>
 
             <TextView
@@ -36,7 +36,7 @@
                 android:text="--:--"
                 android:textSize="20dp" />
         </TableRow>
-
+        // Thời gian kết thúc
         <TableRow android:background="@color/colorPrimary">
 
             <TextView
@@ -50,7 +50,7 @@
                 android:text="--:--"
                 android:textSize="20dp" />
         </TableRow>
-
+        // Thời gian còn lại
         <TableRow>
 
             <TextView
@@ -78,7 +78,7 @@
         android:layout_gravity="center"
         android:text="Task Completed"
         android:textStyle="bold"/>
-
+    // Nút chuyển đến công việc tiếp theo
     <Button
         android:id="@+id/editCurrentTaskBtn"
         style="?android:textAppearanceSmall"

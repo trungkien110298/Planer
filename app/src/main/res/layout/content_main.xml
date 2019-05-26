@@ -8,6 +8,7 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    // Sử dụng tabhost để chia các thẻ với chức năng tương ứng
     <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="match_parent"

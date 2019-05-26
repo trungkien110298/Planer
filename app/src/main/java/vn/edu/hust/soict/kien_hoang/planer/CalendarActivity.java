@@ -12,9 +12,9 @@ public class CalendarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar);
-        simpleCalendarView = findViewById(R.id.calendarView); // get the reference of CalendarView
+        simpleCalendarView = findViewById(R.id.calendarView); // Lấy mã của calendarView để thao tác
 
-        simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() { // Nếu có đổi ngày thì sẽ chuyển sang ngày đó ở tab Day
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // display the selected date by using a toast

@@ -29,48 +29,48 @@ public class Task {
         this.date = date;
         isDone = false ;
     }
-
+    // Lấy tên công việc cần làm
     public String getName() {
         return name;
     }
-
+    // Gán tên công việc cần làm
     public void setName(String _name) {
         name = _name;
     }
+    // Lấy thời gian bắt đầu công việc
     public String getStartTime() {
         return startTime;
     }
-
+    // Gán thời gian bắt đầu công việc
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
-
-
+    // Lấy thời gian kết thúc công việc
     public String getFinishTime() {
         return finishTime;
     }
-
+    // Gán thời gian kết thúc công việc
     public void setFinishTime(String finishTime) {
         this.finishTime = finishTime;
     }
-
+    // Lấy ngày thực hiện công việc
     public String getDate() {
         return date;
     }
-
+    // Gán ngày thực hiện công việc
     public void setDate(String date)
     {
         this.date = date;
     }
-
+    // Lấy trạng thái công việc
     public Boolean getDone() {
         return isDone ;
     }
-
+    // Gán trạng thái công việc
     public void setDone(Boolean isDone) {
         this.isDone = isDone ;
     }
-
+    // Chuyển thông tin công việc thành chuỗi để hiển thị
     @Override
     public String toString()  {
         return "Do task: " + name + " from " + startTime + " to " + finishTime + " date:" + date + "is " + isDone;

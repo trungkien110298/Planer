@@ -13,56 +13,62 @@
         android:padding="10dp"
         android:stretchColumns="*"
         >
-
+        // Tạo các cột tương ứng của công việc
         <TableRow
             android:gravity="center_vertical"
             android:background="@color/design_default_color_primary"
-            android:textAlignment="center">
-
+            android:textAlignment="center"
+            >
+            // Thứ
             <TextView
-
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Days" />
-
+            // Ngày công việc
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Date" />
-
+            // Công việc chính của ngày tương ứng
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Main Task" />
-
+            // Đã hoàn thành hay chưa
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Completed" />
         </TableRow>
 
         <TableRow
-            android:layout_gravity="center_horizontal"
             android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
             android:textAlignment="center">
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Monday" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="27/5/2019" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
-                android:text="Android Report But the task is so longg"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:text="Android Report But the report is so long" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Done" />
@@ -72,21 +78,137 @@
             android:layout_gravity="center_horizontal"
             android:textAlignment="center">
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
-                android:text="Monday" />
+                android:text="Tuesday" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
-                android:text="27/5/2019" />
+                android:text="28/5/2019" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Android Report" />
 
             <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Not Done" />
+        </TableRow>
+        <TableRow
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center">
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Wednesday" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="29/5/2019" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Not Done" />
+        </TableRow>
+        <TableRow
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center">
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Thursday" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="30/5/2019" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Not Done" />
+        </TableRow>
+        <TableRow
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center">
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Friday" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="31/5/2019" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Android Report" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Not Done" />
+        </TableRow>
+        <TableRow
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center">
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Saturday" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="1/6/2019" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Revise for the exam" />
+
+            <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Done" />
@@ -96,120 +218,28 @@
             android:layout_gravity="center_horizontal"
             android:textAlignment="center">
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
-                android:text="Monday" />
+                android:text="Sunday" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
-                android:text="27/5/2019" />
+                android:text="2/6/2019" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Android Report" />
 
             <TextView
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
-                android:text="Done" />
-        </TableRow>
-        <TableRow
-            android:gravity="center_vertical"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center">
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Monday" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="27/5/2019" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Android Report" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Done" />
-        </TableRow>
-        <TableRow
-            android:gravity="center_vertical"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center">
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Monday" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="27/5/2019" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Android Report" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Done" />
-        </TableRow>
-        <TableRow
-            android:gravity="center_vertical"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center">
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Monday" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="27/5/2019" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Android Report" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Done" />
-        </TableRow>
-        <TableRow
-            android:gravity="center_vertical"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center">
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Monday" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="27/5/2019" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Android Report" />
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Done" />
+                android:text="Not Done" />
         </TableRow>
     </TableLayout>
 

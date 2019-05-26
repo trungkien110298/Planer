@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.sql.Time;
 
 public class TaskHelper extends SQLiteOpenHelper {
+    public SQLiteDatabase db ;
     private static final String DATABASE_NAME = "planner.db";
     private static final int SCHEMA_VERSION = 1;
 
@@ -20,7 +22,8 @@ public class TaskHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE tasks (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, " +
+        Log.d("DATABASE CREATE", "DATABASE ONCREATE SQLITEDB TASKHELPER");
+        db.execSQL("CREATE TABLE IF NOT EXISTS tasks (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, " +
                 "startTime TEXT, finishTime TEXT, date TEXT, isDone TEXT);");
     }
 
@@ -28,14 +31,22 @@ public class TaskHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // no-op, since will not be called until 2nd schema
         // version exists
+        //onCreate(db);
+        //onUpgrade(db, oldVersion, newVersion);
     }
 
     public Cursor getAll() {
         return (getReadableDatabase()
-                .rawQuery("SELECT _id, name, startTime, finishTime, date, isDone FROM tasks ORDER BY _id", null));
+                .rawQuery("SELECT * FROM tasks ORDER BY _id", null));
     }
 
-
+//    public Cursor getAllRows() {
+//        String[] allKey = {"_id", "name", "startTime", "finishTime", "date", "isDone"};
+//        Cursor c = db.query(true, "tasks", allKey, null, null,null, null, null, null);
+//        if(c != null)
+//            c.moveToFirst();
+//        return c ;
+//    }
 
     public void insert(String name, Time startTime, Time finishTime, Date date, boolean isDone) {
         ContentValues cv = new ContentValues();
