@@ -81,7 +81,6 @@ public class NowActivity extends Activity {
 
     /**
      * Class to update task every minute
-        ComponentName componentName = new ComponentName(this, UpdateJobService.class);
      */
 
     class UpdateTask implements Runnable {
