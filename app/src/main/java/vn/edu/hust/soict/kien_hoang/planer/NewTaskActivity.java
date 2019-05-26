@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,8 +35,8 @@ public class NewTaskActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_task);
         taskHelper = new TaskHelper(this);
-
-
+        Toast.makeText(this, "ONCREATE", Toast.LENGTH_SHORT).show();
+        Log.d("","ONCREATE_NEWTASK");
         //Name of task
         etName = findViewById(R.id.et_name);
 
