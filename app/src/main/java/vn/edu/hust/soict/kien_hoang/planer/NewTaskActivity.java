@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -54,14 +55,12 @@ public class NewTaskActivity extends Activity {
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         startTime = new Time(hourOfDay, minutes, 0);
                         String tail;
-                        if (hourOfDay >= 12) {
+                        if (hourOfDay > 12) {
                             hourOfDay -= 12;
                             tail = "PM";
                         } else {
                             tail = "AM";
                         }
-//                        etStartTime.setCurrentMinute(minutes);
-//                        etStartTime.setCurrentHour(hourOfDay);
                         etStartTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
                     }
                 }, currentHour, currentMinute, false);
@@ -84,14 +83,12 @@ public class NewTaskActivity extends Activity {
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         finishTime = new Time(hourOfDay, minutes, 0);
                         String tail;
-                        if (hourOfDay >= 12) {
+                        if (hourOfDay > 12) {
                             hourOfDay -= 12;
                             tail = "PM";
                         } else {
                             tail = "AM";
                         }
-//                        etFinishTime.setCurrentMinute(minutes);
-//                        etFinishTime.setCurrentHour(hourOfDay);
                         etFinishTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
 
                     }
@@ -114,9 +111,8 @@ public class NewTaskActivity extends Activity {
                 datePickerDialog = new DatePickerDialog(NewTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        date = new Date(year, month, dayOfMonth);
-//                        etDate.updateDate(year,month ,dayOfMonth);
-                        etDate.setText(String.format("%02d/%02d/%04d ", dayOfMonth, month, year));
+                        date = new Date(year-1900, month, dayOfMonth);
+                        etDate.setText(String.format("%02d/%02d/%04d ", dayOfMonth, month+1, year));
                     }
                 }, currentYear, currentMonth, currentDay);
 
@@ -131,6 +127,7 @@ public class NewTaskActivity extends Activity {
             public void onClick(View v) {
                 name = etName.getText().toString();
                 taskHelper.insert(name, startTime, finishTime, date, false);
+                Toast.makeText(getApplicationContext(), "Added new task", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -139,7 +136,7 @@ public class NewTaskActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(getApplicationContext(), "Added new task", Toast.LENGTH_SHORT).show();
+
         taskHelper.close();
     }
 }
