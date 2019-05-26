@@ -6,8 +6,10 @@ import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
 import android.app.job.JobService;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +24,7 @@ public class NowActivity extends Activity {
     private TextView finishTime;
     private TextView timeLeft;
     private TaskHelper taskHelper;
+    private Task task = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,9 @@ public class NowActivity extends Activity {
         });
 
         // Update task every minutes
-        scheduleJob();
+        Runnable runnable = new UpdateTask();
+        Thread myThread = new Thread(runnable);
+        myThread.start();
     }
 
     @Override
@@ -57,77 +62,47 @@ public class NowActivity extends Activity {
         taskHelper.close();
     }
 
-    public void scheduleJob() {
-        ComponentName componentName = new ComponentName(this, UpdateJobService.class);
-        JobInfo info = new JobInfo.Builder(123, componentName)
-                .setRequiresCharging(true)
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE)
-                .setPersisted(true)
-                .setPeriodic(60 * 1000)  // 60*1000 milliseconds = 1 minute
-                .build();
+    public void updateTask() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    Log.d("Check", "ok in count");
+                    if (task == null) {
+                        Cursor c = taskHelper.getAll();
+                        c.moveToFirst();
+                        do {
 
-        Log.d("Check","OK in schedulerJob()");
-        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        int resultCode = scheduler.schedule(info);
-        if (resultCode == JobScheduler.RESULT_SUCCESS) {
-            Log.d("Check","True");
-        } else {
-            Log.d("Check","Fail");
-        }
+                        } while (c.moveToNext());
+                    } else {
+
+                    }
+                } catch (Exception e) {
+                }
+            }
+        });
     }
 
-
-
-
-    /** Class to update task every minute
-     * Use Job Scheduler API
+    /**
+     * Class to update task every minute
      */
 
-    public class UpdateJobService extends JobService {
-
+    class UpdateTask implements Runnable {
         @Override
-        public boolean onStartJob(JobParameters params) {
-            Log.d("Check","OK");
-            doBackgroundWork(params);
-            return true;
-        }
-
-        private void doBackgroundWork(final JobParameters params) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String stringTimeLeft = (String) timeLeft.getText();
-                    boolean haveTask = false;
-
-                    if (!stringTimeLeft.equals("")){
-                        Log.d("Check","OK");
-                        haveTask = true;
-                        long longTimeLeft = Time.valueOf(stringTimeLeft).getTime();
-                        longTimeLeft -= 1000;
-                        if (longTimeLeft > 0) {
-                            stringTimeLeft = new Time(longTimeLeft).toString();
-                            timeLeft.setText(stringTimeLeft);
-                        }
-                        else {
-                            haveTask = false;
-                        }
-                    }
-
-//                    if (!haveTask) {
-//                        Cursor c = taskHelper.getAll();
-//                        c.moveToFirst();
-//                        do {
-//
-//                        } while (c.moveToNext());
-//                    }
-                    jobFinished(params, false);
+        public void run() {
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    updateTask();
+                    Thread.sleep(60 * 1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                } catch (Exception e) {
                 }
-            }).start();
-        }
-
-        @Override
-        public boolean onStopJob(JobParameters params) {
-            return true;
+            }
         }
     }
+
+
+
+
+
 }
