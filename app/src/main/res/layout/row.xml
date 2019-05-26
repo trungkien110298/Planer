@@ -16,7 +16,7 @@ android:layout_height="match_parent">
         android:maxLines="1"
         android:ellipsize="end"
         />
-    <TextView android:id="@+id/address"
+    <TextView android:id="@+id/startTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

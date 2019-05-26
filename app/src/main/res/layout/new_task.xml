@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Start Time" />
 
-            <EditText
+            <TimePicker
                 android:id="@+id/etStartTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="Finish Time" />
 
-            <EditText
+            <TimePicker
                 android:id="@+id/etFinishTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,11 +107,12 @@
                 android:layout_height="wrap_content"
                 android:text="Date" />
 
-            <EditText
+            <DatePicker
                 android:id="@+id/etDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Choose the date"/>
+                android:hint="Choose the date"
+                />
         </TableRow>
 
     </TableLayout>

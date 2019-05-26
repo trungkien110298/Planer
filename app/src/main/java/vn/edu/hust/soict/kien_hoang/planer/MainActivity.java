@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity
 //                    intent.putExtra("bundle",bundle);
 //                    startActivity(redirectIntent);
                     TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
-                    tabHost.setCurrentTab(1);
+                    tabHost.setCurrentTab(0);
                 }
             } else {
                 Toast.makeText(this,intent.getStringExtra("date"),Toast.LENGTH_LONG).show();

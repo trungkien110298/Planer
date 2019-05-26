@@ -16,9 +16,9 @@ import java.sql.Time;
 import java.util.Calendar;
 
 public class NewTaskActivity extends Activity {
-    private EditText etStartTime;
-    private EditText etFinishTime;
-    private EditText etDate;
+    private TimePicker etStartTime;
+    private TimePicker etFinishTime;
+    private DatePicker etDate;
     private EditText etName;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
@@ -60,7 +60,9 @@ public class NewTaskActivity extends Activity {
                         } else {
                             tail = "AM";
                         }
-                        etStartTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
+                        etStartTime.setCurrentMinute(minutes);
+                        etStartTime.setCurrentHour(hourOfDay);
+//                        etStartTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
                     }
                 }, currentHour, currentMinute, false);
 
@@ -88,7 +90,9 @@ public class NewTaskActivity extends Activity {
                         } else {
                             tail = "AM";
                         }
-                        etFinishTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
+                        etFinishTime.setCurrentMinute(minutes);
+                        etFinishTime.setCurrentHour(hourOfDay);
+//                        etFinishTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
 
                     }
                 }, currentHour, currentMinute, false);
@@ -111,7 +115,8 @@ public class NewTaskActivity extends Activity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         date = new Date(year, month, dayOfMonth);
-                        etDate.setText(String.format("%02d/%02d/%04d ", dayOfMonth, month, year));
+                        etDate.updateDate(year,month ,dayOfMonth);
+//                        etDate.setText(String.format("%02d/%02d/%04d ", dayOfMonth, month, year));
                     }
                 }, currentYear, currentMonth, currentDay);
 

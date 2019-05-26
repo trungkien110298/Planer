@@ -34,6 +34,14 @@ public class TaskHelper extends SQLiteOpenHelper {
                 .rawQuery("SELECT _id, name, startTime, finishTime, date, isDone FROM tasks ORDER BY _id", null));
     }
 
+//    public Cursor getAllRows() {
+//        Database db =
+//        String[] allKey = {"_id", "name", "startTime", "finishTime", "date", "isDone"};
+//        Cursor c = db.query(true, "tasks", allKey, null, null,null, null, null, null);
+//        if(c != null)
+//            c.moveToFirst();
+//        return c ;
+//    }
 
     public void insert(String name, Time startTime, Time finishTime, Date date, boolean isDone) {
         ContentValues cv = new ContentValues();
