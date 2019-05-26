@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="vn.edu.hust.soict.kien_hoang.planer">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -54,8 +53,10 @@
         <activity android:name=".NewTaskActivity">
         </activity>
 
-
-
+        <!--Update Task-->
+        <service
+            android:name=".NowActivity$UpdateJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>
