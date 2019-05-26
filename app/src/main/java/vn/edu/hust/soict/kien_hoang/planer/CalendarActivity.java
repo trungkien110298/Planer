@@ -12,18 +12,18 @@ public class CalendarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar);
-        simpleCalendarView = findViewById(R.id.calendarView); // get the reference of CalendarView
+        simpleCalendarView = findViewById(R.id.calendarView); // Lấy mã của calendarView để thao tác
 
-        simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() { // Nếu có đổi ngày thì sẽ chuyển sang ngày đó ở tab Day
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // display the selected date by using a toast
-                Intent intent = new Intent(CalendarActivity.this,MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("date",dayOfMonth + "/" + month + "/" + year);
-                bundle.putString("routes","Day");
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+                Intent intent = new Intent(CalendarActivity.this,MainActivity.class); // Khai báo intent
+                Bundle bundle = new Bundle(); // Khai báo bundle chứa dữ liệu cần chuyển của nó
+                bundle.putString("date",dayOfMonth + "/" + month + "/" + year); // Thêm ngày
+                bundle.putString("routes","Day"); // Chuyển hướng đến tab Day
+                intent.putExtra("bundle",bundle); //
+                startActivity(intent); // Thực hiện chuyển hành động
             }
         });
     }

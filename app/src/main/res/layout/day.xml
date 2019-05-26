@@ -11,34 +11,34 @@
         android:padding="10dp"
         android:stretchColumns="*"
         >
-
+        // Tạo các cột tương ứng của công việc
         <TableRow
             android:gravity="center_vertical"
             android:background="@color/colorPrimary"
             android:textAlignment="center">
-
+            // Tên công việc
             <TextView
-
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Task" />
-
+            // Thời gian bắt đầu công việc
             <TextView
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Start" />
-
+            // Thời gian kết thúc công việc
             <TextView
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Finish" />
-
+            // Đã hoàn thành hay chưa
             <TextView
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Completed" />
         </TableRow>
     </TableLayout>
+    // Danh sách các công việc trong ngày
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

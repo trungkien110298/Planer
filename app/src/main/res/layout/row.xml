@@ -7,6 +7,7 @@ android:layout_height="match_parent">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"    >
+        // Tên công việc trong ngày
     <TextView android:id="@+id/taskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@ android:layout_height="match_parent">
         android:maxLines="1"
         android:ellipsize="end"
         />
+        // Thời gian bắt đầu công việc
     <TextView android:id="@+id/startTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +26,7 @@ android:layout_height="match_parent">
         android:maxLines="1"
         android:ellipsize="end"
         />
+        // Thời gian kết thúc công việc
     <TextView android:id="@+id/finishTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +36,7 @@ android:layout_height="match_parent">
         android:maxLines="1"
         android:ellipsize="end"
         />
+        // Công việc đã được hoàn thành hay chưa
     <TextView android:id="@+id/done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

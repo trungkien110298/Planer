@@ -13,31 +13,31 @@
         android:padding="10dp"
         android:stretchColumns="*"
         >
-
+        // Tạo các cột tương ứng của công việc
         <TableRow
             android:gravity="center_vertical"
             android:background="@color/design_default_color_primary"
             android:textAlignment="center"
             >
-
+            // Thứ
             <TextView
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Days" />
-
+            // Ngày công việc
             <TextView
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Date" />
-
+            // Công việc chính của ngày tương ứng
             <TextView
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="Main Task" />
-
+            // Đã hoàn thành hay chưa
             <TextView
                 android:layout_weight="1"
                 android:gravity="center_horizontal"

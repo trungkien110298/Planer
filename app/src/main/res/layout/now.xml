@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+    // Khai báo bảng chứa dữ liệu của công việc hiện tại
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:stretchColumns="*">
-
+        // Tên công việc
         <TableRow android:background="@color/colorPrimary">
 
             <TextView
@@ -23,7 +23,7 @@
                 android:text="BTL Android"
                 android:textSize="20dp" />
         </TableRow>
-
+        //Thời gian bắt đầu
         <TableRow>
 
             <TextView
@@ -36,7 +36,7 @@
                 android:text="22:00"
                 android:textSize="20dp" />
         </TableRow>
-
+        // Thời gian kết thúc
         <TableRow android:background="@color/colorPrimary">
 
             <TextView
@@ -50,7 +50,7 @@
                 android:text="23:00"
                 android:textSize="20dp" />
         </TableRow>
-
+        // Thời gian còn lại
         <TableRow>
 
             <TextView
@@ -64,7 +64,7 @@
                 android:textSize="20dp" />
         </TableRow>
     </TableLayout>
-
+    // Nút sửa thông tin công việc
     <Button
         android:id="@+id/editCurrentTaskBtn"
         style="?android:textAppearanceSmall"
@@ -74,7 +74,7 @@
         android:layout_gravity="center"
         android:text="Edit"
         android:textStyle="bold" />
-
+    // Nút xác nhận hoàn thành công việc
     <Button
         android:id="@+id/nowCompleteBtn"
         style="?android:textAppearanceSmall"
@@ -84,7 +84,7 @@
         android:layout_gravity="center"
         android:text="Task Completed"
         android:textStyle="bold"/>
-
+    // Nút chuyển đến công việc tiếp theo
     <Button
         android:id="@+id/nextTask"
         style="?android:textAppearanceSmall"
@@ -94,7 +94,7 @@
         android:layout_gravity="center"
         android:text="Next Task"
         android:textStyle="bold"/>
-
+    // Hiển thị tiêu đề của công việc tiếp theo cần làm
     <TextView
         android:id="@+id/nextTaskTime"
         android:layout_width="wrap_content"
