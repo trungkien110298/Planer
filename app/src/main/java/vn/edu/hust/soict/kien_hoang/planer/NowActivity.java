@@ -57,13 +57,11 @@ public class NowActivity extends Activity {
         super.onDestroy();
         taskHelper.close();
     }
-
     public void updateTask() {
         runOnUiThread(new Runnable() {
             public void run() {
                 try {
                     long lTimeLeft = 0, lFinishTime, lStartTime, lTimeLast;
-
                     Calendar calendar = Calendar.getInstance();
                     String sCurrentTime = new Time(calendar.getTimeInMillis()).toString();
                     long lCurrentTime = Time.valueOf(sCurrentTime).getTime();
@@ -76,7 +74,6 @@ public class NowActivity extends Activity {
                     int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
                     String sCurrentDate = new Date(currentYear - 1900, currentMonth, currentDay).toString();
 
-                    // Check task finished or not
                     if (task != null) {
                         lFinishTime = Time.valueOf(task.getFinishTime()).getTime();
                         lTimeLeft = lFinishTime - lCurrentTime;
@@ -100,6 +97,8 @@ public class NowActivity extends Activity {
                         do {
                             Log.d("Cursor", "" + taskHelper.getName(c));
                             String sTaskDate = taskHelper.getDate(c).toString();
+                            if (sCurrentDate.equals(sTaskDate))
+                            {
                             if (sCurrentDate.equals(sTaskDate)) {
                                 Log.d("Equals", "YOLOOOOOOO");
                                 lFinishTime = taskHelper.getFinishTime(c).getTime();
@@ -108,6 +107,9 @@ public class NowActivity extends Activity {
                                 Log.d("SSSSSS", taskHelper.getStartTime(c) + " " + lStartTime);
                                 lTimeLeft = lFinishTime - lCurrentTime;
                                 lTimeLast = lCurrentTime - lStartTime;
+                                if(lTimeLast >0 && lTimeLeft >0){
+                                    //Tạo công việc
+                                    Log.d("Time ", "" + new Time(lFinishTime-lStartTime).toString());
                                 if (lTimeLast > 0 && lTimeLeft > 0) {
                                     //Create task
                                     Log.d("Time ", taskHelper.getFinishTime(c) + " " + taskHelper.getStartTime(c) + " "
@@ -118,7 +120,7 @@ public class NowActivity extends Activity {
                                     task.setFinishTime(taskHelper.getFinishTime(c).toString());
                                     task.setDate(sTaskDate);
 
-                                    //Change view
+                                    //Cập nhật lên giao diện
                                     taskName.setText(taskHelper.getName(c));
                                     startTime.setText(taskHelper.getStartTime(c).toString().substring(0, 5));
                                     finishTime.setText(taskHelper.getFinishTime(c).toString().substring(0, 5));
@@ -129,14 +131,13 @@ public class NowActivity extends Activity {
                         } while (c.moveToNext());
                     }
 
-                    //Change to default if done have
                     if (task == null) {
                         taskName.setText("None");
                         startTime.setText("--:--");
                         finishTime.setText("--:--");
                         timeLeft.setText("--:--");
                     }
-
+                // Bắt ngoại lệ
                 } catch (Exception e) {
                 }
             }
