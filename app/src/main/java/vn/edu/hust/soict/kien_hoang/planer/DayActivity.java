@@ -110,7 +110,7 @@ public class DayActivity extends Activity {
             if (r.getDone()) {
                 isDone.setText("Completed");
             } else {
-                isDone.setText("");
+                isDone.setText("Not Done");
             }
         }
     }

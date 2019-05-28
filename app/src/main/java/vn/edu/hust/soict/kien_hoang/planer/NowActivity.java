@@ -127,7 +127,7 @@ public class NowActivity extends Activity {
                                     timeLeft.setText(new Time(lTimeLeft - 8 * 60 * 60 * 1000).toString().substring(0, 5));
                                     break;
                                 }
-                            }
+                            }}}
                         } while (c.moveToNext());
                     }
 
