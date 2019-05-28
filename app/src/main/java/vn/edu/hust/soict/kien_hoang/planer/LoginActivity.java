@@ -39,36 +39,38 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
-     * Id to identity READ_CONTACTS permission request.
+     * Mã để xác minh quyền truy cập đọc dữ liệu
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
 
     private Cursor user = null;
     /**
-     * Keep track of the login task to ensure we can cancel it if requested.
+     * Theo dõi cấp quyền sau đăng nhập để có thể hủy bỏ quyền nếu được yêu cầu
      */
     private UserLoginTask mAuthTask = null;
 
-    // UI references.
+    // Các đối tượng tương ứng với trên giao diện
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
     private UserHelper userHelper;
 
-
+    // Ghi đè hàm khởi tạo của Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Khởi tạo đối tượng userHelper để làm việc với cơ sở dữ liệu bảng users
         userHelper = new UserHelper(this);
 
         setContentView(R.layout.activity_login);
 
-        // Set up the login form.
+        // Thiết lập mẫu đăng nhập
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        // Cập nhật tự động hoàn thành email đăng nhập nếu có
         populateAutoComplete();
-
+        // Lấy thông tin đăng nhập - mật khẩu để xác thực
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -81,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        // Lấy thông tin và xác thực email đăng nhập
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -98,16 +101,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        // Lấy đối tượng từ View
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
 
+    // Ghi đè hàm onDestroy: đóng cơ sở dữ liệu sau khi xử lý hoàn tất
     @Override
     public void onDestroy() {
         super.onDestroy();
         userHelper.close();
     }
 
+    // Xác thực tài khoản sau khi ấn đăng nhập
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -115,13 +121,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         getLoaderManager().initLoader(0, null, this);
     }
 
+    // Xác thực tài khoản đăng nhập
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
+        // Kiểm tra quyền người dùng
         if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
+        // Kiểm tra các yêu cầu được gửi tới về cấp quyền
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
@@ -138,8 +147,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     /**
-     * Callback received when a permissions request has been completed.
+     * Nhận lại callback khi yêu cầu cấp quyền được hoàn tất
      */
+    // Quyền đăng nhập được xác thực
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -152,39 +162,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
     /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * Đăng nhập hoặc đăng ký bằng một tài khoản xác đinh riêng biệt
+     * Nếu có lỗi xảy ra thì lỗi sẽ được hiển thị trên giao diện
      */
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
         }
 
-        // Reset errors.
+        // đặt lại lỗi
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
+        // Lưu trữ giá trị số lần đăng nhập không thành công
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        // Kiểm tra xác thực mật khẩu sau khi người dùng nhập vào
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        // Xác thực tài khoản do người dùng nhập vào
+        if (TextUtils.isEmpty(email)) { // Nếu người dùng không điền vào trường tài khoản
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(email)) { // Nếu mẫu email không hợp lệ
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -192,39 +201,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+            // Nếu có lỗi xảy ra, màn hình sẽ tập trung vào lỗi
             focusView.requestFocus();
         } else {
-            // Check email and password
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // Kiểm tra email và mật khẩu
+            // Hiển thị thanh tiến trình xử lý xác minh tài khoản và mật khẩu
+            // Hiển thị số lần đăng nhập không thành công liên tiếp
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
     }
-
+    // Hàm xác minh email hợp lệ
     private boolean isEmailValid(String email) {
         return email.contains("@");
     }
-
+    // Hàm xác minh mật khẩu hợp lệ
     private boolean isPasswordValid(String password) {
         return password.length() > 4;
     }
 
     /**
-     * Shows the progress UI and hides the login form.
+     * Hiển thị tiến trình đăng nhập và ẩn mẫu đăng nhập
      */
 
+    // Hiển thị tiến trình
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
+        // Xử lý giao diện hình ảnh cho phần tiến trình
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
+            // Ẩn tiến trình
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
             mLoginFormView.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
@@ -233,7 +240,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
-
+            // Hiển thị tiến trình
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mProgressView.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
@@ -243,30 +250,30 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
+            // Nếu không có API của những thiết bị không có API thì ẩn giao diện xử lí tiến trình
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
 
+    // Ghi đè phương thức truyền dữ liệu để kiểm tra thông tin
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
+                // Truyền bản ghi dữ liệu tới thông tin của thiết bị của người dùng
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
                         ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
-                // Select only email addresses.
+                // Chọn chỉ nhận địa chỉ email
                 ContactsContract.Contacts.Data.MIMETYPE +
                         " = ?", new String[]{ContactsContract.CommonDataKinds.Email
                 .CONTENT_ITEM_TYPE},
 
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
+                // Hiển thị email chính, nếu không thì hiển thị những email người dùng sử dụng nhiều nhất
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+    //Tải danh sách email đã nhập của người dùng
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         List<String> emails = new ArrayList<>();
@@ -285,7 +292,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
+        //Tạo Adapter để hiển thị danh sách các email người dùng đã nhập theo thứ tự tần suất giảm dần
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
@@ -305,14 +312,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * Hiển thị công việc đồng bộ cho Đăng nhập và đăng kí sau khi xác thực tài khoản
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
 
         private final String mEmail;
         private final String mPassword;
-
+        // Gán lại tài khoản người dùng đã đăng nhập lại
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -334,6 +340,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return 2;
         }
 
+        // Thực hiện ngầm tiến trình xác thực tài khoản
         @Override
         protected void onPostExecute(final Integer success) {
             mAuthTask = null;
@@ -352,6 +359,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         }
 
+        // Đăng nhập thất bại, hủy bỏ tiến trình
         @Override
         protected void onCancelled() {
             mAuthTask = null;

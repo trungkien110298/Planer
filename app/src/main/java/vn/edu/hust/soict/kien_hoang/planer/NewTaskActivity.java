@@ -17,17 +17,17 @@ import java.sql.Time;
 import java.util.Calendar;
 
 public class NewTaskActivity extends Activity {
-    private EditText etStartTime;
-    private EditText etFinishTime;
-    private EditText etDate;
-    private EditText etName;
-    private DatePickerDialog datePickerDialog;
-    private TimePickerDialog timePickerDialog;
-    private Date date;
-    private Time startTime;
-    private Time finishTime;
-    private String name;
-    private TaskHelper taskHelper;
+    private EditText etStartTime; // Ô nhập thời gian bắt đầu
+    private EditText etFinishTime; // Ô nhập thời gian kết thúc
+    private EditText etDate; // Ô nhập ngày thực hiện công việc
+    private EditText etName; // Ô nhập tên công việc
+    private DatePickerDialog datePickerDialog; // Hiển thị chọn ngày
+    private TimePickerDialog timePickerDialog; // Hiển thị chọn thời gian
+    private Date date; // Ngày thực hiện công việc
+    private Time startTime; // Thời gian bắt đầu công việc
+    private Time finishTime; // Thời gian kết thúc công việc
+    private String name; // Tên công việc
+    private TaskHelper taskHelper; // Đối tượng hỗ trợ tao tác với cơ sở dữ liệu bảng tasks
 
 
     @Override
@@ -35,13 +35,11 @@ public class NewTaskActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_task);
         taskHelper = new TaskHelper(this);
-        Toast.makeText(this, "ONCREATE", Toast.LENGTH_SHORT).show();
-        Log.d("","ONCREATE_NEWTASK");
         //Name of task
         etName = findViewById(R.id.et_name);
 
 
-        //Choose start time
+        // Chọn thời gian bắt đầu
         etStartTime = findViewById(R.id.etStartTime);
         etStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +47,7 @@ public class NewTaskActivity extends Activity {
                 Calendar calendar = Calendar.getInstance();
                 int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
                 int currentMinute = calendar.get(Calendar.MINUTE);
-
+                // Lấy thời gian
                 timePickerDialog = new TimePickerDialog(NewTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
@@ -61,15 +59,16 @@ public class NewTaskActivity extends Activity {
                         } else {
                             tail = "AM";
                         }
+                        // Gán lại thời gian đã nhập theo đúng định dạng vào ô thời gian bắt đầu
                         etStartTime.setText(String.format("%02d:%02d ", hourOfDay, minutes) + tail);
                     }
                 }, currentHour, currentMinute, false);
-
+                // Hiển thị thời gian đã chọn
                 timePickerDialog.show();
             }
         });
 
-        //Choose finish time
+        //Tương tự như thời gian bắt đầu
         etFinishTime = findViewById(R.id.etFinishTime);
         etFinishTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +97,7 @@ public class NewTaskActivity extends Activity {
             }
         });
 
-        //Choose date
+        //Chọn ngày thực hiện công việc
         etDate = findViewById(R.id.etDate);
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,20 +111,22 @@ public class NewTaskActivity extends Activity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         date = new Date(year-1900, month, dayOfMonth);
+                        // Gán lại ngày đã nhập theo đúng định dạng vào ô thời gian bắt đầu
                         etDate.setText(String.format("%02d/%02d/%04d ", dayOfMonth, month+1, year));
                     }
                 }, currentYear, currentMonth, currentDay);
-
+                // Hiển thị ngày đã chọn
                 datePickerDialog.show();
             }
         });
 
-        //Create new task
+        //Tạo mới công việc
         Button btCreate = findViewById(R.id.bt_create);
         btCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = etName.getText().toString();
+                // Thêm công việc đó vào cơ sở dữ liệu bằng hàm insert
                 taskHelper.insert(name, startTime, finishTime, date, false);
                 Toast.makeText(getApplicationContext(), "Added new task", Toast.LENGTH_SHORT).show();
                 finish();
