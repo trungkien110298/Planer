@@ -13,20 +13,19 @@ import java.sql.Time;
 
 public class TaskHelper extends SQLiteOpenHelper {
     public SQLiteDatabase db ;
-    private static final String DATABASE_NAME = "planner.db"; // Tên cơ sở dữ liệu
-    private static final int SCHEMA_VERSION = 1; // Số phiên bản của cơ sở dữ liệu
     // Hàm khởi tạo đối tượng UserHelper
+    private static final String DATABASE_NAME = "task.db";
+    private static final int SCHEMA_VERSION = 1;
+
     public TaskHelper(Context context) {
         super(context, DATABASE_NAME, null, SCHEMA_VERSION);
     }
-    // Ghi đè phương thức onCreate của lớp SQLiteHelper (Tạo bảng mới tasks)
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DATABASE CREATE", "DATABASE ONCREATE SQLITEDB TASKHELPER");
         db.execSQL("CREATE TABLE IF NOT EXISTS tasks (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, " +
                 "startTime TEXT, finishTime TEXT, date TEXT, isDone TEXT);");
     }
-    // Ghi đè phương thức onUpgrade của lớp SQLiteHelper (Thay đổi thông tin tasks)
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // no-op, since will not be called until 2nd schema
@@ -34,14 +33,11 @@ public class TaskHelper extends SQLiteOpenHelper {
         //onCreate(db);
         //onUpgrade(db, oldVersion, newVersion);
     }
-    // Lấy ra con trỏ tới toàn bộ dữ liệu được truy vấn ra
     public Cursor getAll() {
         return (getReadableDatabase()
                 .rawQuery("SELECT * FROM tasks ORDER BY _id", null));
     }
-    //Thêm mới bản ghi sau khi người dùng thêm mới công việc
     public void insert(String name, Time startTime, Time finishTime, Date date, boolean isDone) {
-        // Thêm thông tin vào trong cơ sở dữ liệu sử dụng ContentValues
         ContentValues cv = new ContentValues();
         cv.put("name", name);
         cv.put("startTime", startTime.toString());

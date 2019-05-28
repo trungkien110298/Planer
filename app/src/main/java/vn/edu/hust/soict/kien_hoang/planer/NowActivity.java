@@ -57,27 +57,29 @@ public class NowActivity extends Activity {
         super.onDestroy();
         taskHelper.close();
     }
-    // Cập nhật công việc về thời gian cho người dùng
     public void updateTask() {
         runOnUiThread(new Runnable() {
             public void run() {
                 try {
                     long lTimeLeft = 0, lFinishTime, lStartTime, lTimeLast;
-                    // Lấy thời gian hiện tại
                     Calendar calendar = Calendar.getInstance();
                     String sCurrentTime = new Time(calendar.getTimeInMillis()).toString();
                     long lCurrentTime = Time.valueOf(sCurrentTime).getTime();
+
+                    Log.d("KKKKKK", sCurrentTime + lCurrentTime);
+
+
                     int currentYear = calendar.get(Calendar.YEAR);
                     int currentMonth = calendar.get(Calendar.MONTH);
                     int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-                    String sCurrentDate = new Date(currentYear-1900, currentMonth, currentDay).toString();
+                    String sCurrentDate = new Date(currentYear - 1900, currentMonth, currentDay).toString();
 
-                    // Kiểm tra xem công việc đã hoàn thành chưa
                     if (task != null) {
                         lFinishTime = Time.valueOf(task.getFinishTime()).getTime();
                         lTimeLeft = lFinishTime - lCurrentTime;
-                        Log.d("TL" , lCurrentTime+ " " + lFinishTime);
-                        if(lTimeLeft < 0) {
+
+
+                        if (lTimeLeft < 0) {
                             task = null;
                             taskName.setText("None");
                             startTime.setText("");
@@ -86,25 +88,32 @@ public class NowActivity extends Activity {
                         }
                     }
 
-                    //Thêm một công việc mới nếu có
-                    if (task != null)
-                    {
-                        timeLeft.setText(new Time(lTimeLeft).toString().substring(0,5));
+                    //Add new task if have
+                    if (task != null) {
+                        timeLeft.setText(new Time(lTimeLeft - 8 * 60 * 60 * 1000).toString().substring(0, 5));
                     } else {
                         Cursor c = taskHelper.getAll();
                         c.moveToFirst();
                         do {
-                            Log.d("Cursor","" + taskHelper.getName(c));
+                            Log.d("Cursor", "" + taskHelper.getName(c));
                             String sTaskDate = taskHelper.getDate(c).toString();
                             if (sCurrentDate.equals(sTaskDate))
-                            { // Tính toán thời gian còn dư để thực hiện công việc
+                            {
+                            if (sCurrentDate.equals(sTaskDate)) {
+                                Log.d("Equals", "YOLOOOOOOO");
                                 lFinishTime = taskHelper.getFinishTime(c).getTime();
                                 lStartTime = taskHelper.getStartTime(c).getTime();
+                                Log.d("FFFFFF", taskHelper.getFinishTime(c) + " " + lFinishTime);
+                                Log.d("SSSSSS", taskHelper.getStartTime(c) + " " + lStartTime);
                                 lTimeLeft = lFinishTime - lCurrentTime;
                                 lTimeLast = lCurrentTime - lStartTime;
                                 if(lTimeLast >0 && lTimeLeft >0){
                                     //Tạo công việc
                                     Log.d("Time ", "" + new Time(lFinishTime-lStartTime).toString());
+                                if (lTimeLast > 0 && lTimeLeft > 0) {
+                                    //Create task
+                                    Log.d("Time ", taskHelper.getFinishTime(c) + " " + taskHelper.getStartTime(c) + " "
+                                            + new Time(lFinishTime - lStartTime - 8 * 60 * 60 * 1000).toString());
                                     task = new Task();
                                     task.setName(taskHelper.getName(c));
                                     task.setStartTime(taskHelper.getStartTime(c).toString());
@@ -113,18 +122,16 @@ public class NowActivity extends Activity {
 
                                     //Cập nhật lên giao diện
                                     taskName.setText(taskHelper.getName(c));
-                                    startTime.setText(taskHelper.getStartTime(c).toString().substring(0,5));
-                                    finishTime.setText(taskHelper.getFinishTime(c).toString().substring(0,5));
-                                    timeLeft.setText(new Time(lTimeLeft).toString().substring(0,5));
+                                    startTime.setText(taskHelper.getStartTime(c).toString().substring(0, 5));
+                                    finishTime.setText(taskHelper.getFinishTime(c).toString().substring(0, 5));
+                                    timeLeft.setText(new Time(lTimeLeft - 8 * 60 * 60 * 1000).toString().substring(0, 5));
                                     break;
                                 }
                             }
                         } while (c.moveToNext());
                     }
 
-                    //Chuyển về mặc định nếu đã hoàn thanh công việc
-                    if (task == null)
-                    {
+                    if (task == null) {
                         taskName.setText("None");
                         startTime.setText("--:--");
                         finishTime.setText("--:--");
@@ -136,7 +143,6 @@ public class NowActivity extends Activity {
             }
         });
     }
-
 
 
     /**

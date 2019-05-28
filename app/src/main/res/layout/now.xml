@@ -50,9 +50,9 @@
                 android:text="--:--"
                 android:textSize="20dp" />
         </TableRow>
+
         // Thời gian còn lại
         <TableRow>
-
             <TextView
                 android:padding="5dp"
                 android:text="Time Left"
@@ -64,10 +64,6 @@
                 android:textSize="20dp" />
         </TableRow>
     </TableLayout>
-
-
-
-
 
     <Button
         android:id="@+id/nowCompleteBtn"
